@@ -10,22 +10,22 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/courserajava.jar!/" />
+          <root url="jar://$MODULE_DIR$/../courserajava.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Downloads/courserajava.jar!/" />
+          <root url="jar://$MODULE_DIR$/../courserajava.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/apache-csv.jar!/" />
+          <root url="jar://$MODULE_DIR$/../apache-csv.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Downloads/apache-csv.jar!/" />
+          <root url="jar://$MODULE_DIR$/../apache-csv.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

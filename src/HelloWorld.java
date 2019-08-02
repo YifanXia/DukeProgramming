@@ -10,7 +10,8 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) {
-        runHello();
+        HelloWorld helloWorld = new HelloWorld();
+        helloWorld.runHello();
     }
 
 }
