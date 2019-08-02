@@ -26,6 +26,9 @@ public class PerimeterRunner {
         System.out.println("perimeter = " + length);
     }
 
+    public void triangle () {
+
+    }
     public static void main (String[] args) {
         PerimeterRunner pr = new PerimeterRunner();
         pr.testPerimeter();
