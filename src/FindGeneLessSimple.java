@@ -29,6 +29,9 @@ public class FindGeneLessSimple {
         if (indexStopCodon == -1) { // No TAA
             return "";
         }
+        if ((indexStopCodon - indexStartCodon) % 3 != 0) {
+            return "";
+        }
         result = dna.substring(indexStartCodon, indexStopCodon + 3);
         return result;
     }
@@ -46,7 +49,7 @@ public class FindGeneLessSimple {
     public void testFindGeneSimple() {
         String startCodon = "ATG";
         String stopCodon = "TAA";
-        String dna = "AATGCGTAATATGGT";
+        String dna = "AATGCCGTAATATGGT";
         System.out.println("DNA is " + dna);
         String gene = findGeneSimple(dna, startCodon, stopCodon);
         System.out.println("Gene is " + gene);
@@ -62,6 +65,11 @@ public class FindGeneLessSimple {
         System.out.println("Gene is " + gene);
 
         dna = "AATGCGTAATATGGT".toLowerCase();
+        System.out.println("DNA is " + dna);
+        gene = findGeneSimple(dna, startCodon, stopCodon);
+        System.out.println("Gene is " + gene);
+
+        dna = "AATGGCGTAATATGGT".toLowerCase();
         System.out.println("DNA is " + dna);
         gene = findGeneSimple(dna, startCodon, stopCodon);
         System.out.println("Gene is " + gene);
