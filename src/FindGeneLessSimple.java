@@ -74,6 +74,11 @@ public class FindGeneLessSimple {
         gene = findGeneSimple(dna, startCodon, stopCodon);
         System.out.println("Gene is " + gene);
 
+        dna = "AAATGCCCTAACTAGATTAAGAAACC";
+        System.out.println("DNA is " + dna);
+        gene = findGeneSimple(dna, startCodon, stopCodon);
+        System.out.println("Gene is " + gene);
+
     }
 
     public static void main(String[] args) {
