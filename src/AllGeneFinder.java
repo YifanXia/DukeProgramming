@@ -120,5 +120,6 @@ public class AllGeneFinder {
         allGeneFinder.testFindStopCodon();
         allGeneFinder.testFindGene();
         allGeneFinder.testPrintAllGenes();
+        System.out.println(allGeneFinder.findGene("AATGCTAACTAGCTGACTAAT", 0));
     }
 }
