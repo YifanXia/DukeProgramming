@@ -1,3 +1,4 @@
+package Course1;
 
 /* Some basic useful methods
     public String s = "dukeprogramming";

@@ -1,3 +1,5 @@
+package Course1;
+
 public class AllGeneFinder {
 
     /**

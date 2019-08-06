@@ -1,3 +1,5 @@
+package Course1;
+
 import edu.duke.*;
 import java.io.File;
 

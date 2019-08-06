@@ -1,3 +1,5 @@
+package Course1;
+
 import edu.duke.URLResource;
 
 public class UrlFinder {

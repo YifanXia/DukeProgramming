@@ -1,3 +1,5 @@
+package Course1;
+
 public class StringProblemSolving {
 
     public static boolean twoOccurences(String stringA, String stringB) {

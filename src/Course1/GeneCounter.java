@@ -1,3 +1,5 @@
+package Course1;
+
 public class GeneCounter {
 
     private AllGeneFinder allGeneFinder = new AllGeneFinder();

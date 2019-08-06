@@ -1,3 +1,5 @@
+package Course1;
+
 import edu.duke.*;
 
 public class HelloWorld {
