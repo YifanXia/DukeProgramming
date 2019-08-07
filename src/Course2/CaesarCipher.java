@@ -40,6 +40,10 @@ public class CaesarCipher {
         return encrypted.toString();
     }
 
+    public String decrypt(String encrypted, int key) {
+        return encrypt(encrypted, 26 - key);
+    }
+
     public void testEncrypt() {
         String initial = "I am BATMAN";
         int key = 3;
