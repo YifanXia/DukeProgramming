@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CaesarCipher {
 
-    public String reverseFor(String s) {
+    private String reverseFor(String s) {
         String ret = "";
         int k; // define the variable k outside the loop to be referred afterwards
         for (k=0; k<s.length(); k ++) {
@@ -13,7 +13,7 @@ public class CaesarCipher {
         return ret;
     }
 
-    public String reverseWhile(String s) {
+    private String reverseWhile(String s) {
         String ret = "";
         int k = 0;
         while (k < s.length()) {
@@ -88,9 +88,10 @@ public class CaesarCipher {
         String encrypted = encryptTwoKeys(initial, key1, key2);
         System.out.println(encrypted);
 
-        initial = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
-        key1 = 8;
-        key2 = 21;
+        //initial = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
+        initial = "Top ncmy qkff vi vguv vbg ycpx";
+        key1 = 26-2;
+        key2 = 26-20;
         encrypted = encryptTwoKeys(initial, key1, key2);
         System.out.println(encrypted);
 

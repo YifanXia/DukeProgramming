@@ -25,7 +25,7 @@ public class WordLengths {
 
     public void testCountWordLengths() {
         int[] lengthCounts = new int[31];
-        FileResource resource = new FileResource("resources/data/smallHamlet.txt");
+        FileResource resource = new FileResource("resources/data/lotsOfWords.txt");
         countWordLengths(resource, lengthCounts);
         for (int k = 1; k < lengthCounts.length; k ++) {
             if (lengthCounts[k] > 0) {
@@ -47,7 +47,6 @@ public class WordLengths {
 
     public static void main(String[] args) {
         WordLengths wordLengths = new WordLengths();
-        FileResource resource = new FileResource("resources/data/smallHamlet.txt");
         wordLengths.testCountWordLengths();
     }
 }
