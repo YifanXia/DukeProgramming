@@ -1,5 +1,8 @@
 package Course2;
 
+import edu.duke.FileResource;
+import org.junit.Test;
+
 public class TestCaesarCipher {
 
     public int[] countLetters(String message) {
@@ -22,5 +25,21 @@ public class TestCaesarCipher {
             }
         }
         return indMax;
+    }
+
+    public void simpleTest() {
+        FileResource fr = new FileResource("resources/data/smallHamlet.txt");
+        String text = fr.asString();
+        CaesarCipherOO cc = new CaesarCipherOO(18);
+        String encrypted = cc.encrypt(text);
+        String decrypted = cc.decrypt(encrypted);
+        System.out.println(encrypted);
+        System.out.println(decrypted);
+
+    }
+
+    public static void main(String[] args) {
+        TestCaesarCipher test = new TestCaesarCipher();
+        test.simpleTest();
     }
 }
