@@ -36,7 +36,9 @@ public class CaesarCipherOO {
 
 
     public static void main(String[] args) {
-        CaesarCipherOO caesarCipherOO = new CaesarCipherOO(8);
+        String message = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        CaesarCipherOO caesarCipherOO = new CaesarCipherOO(15);
+        System.out.println(caesarCipherOO.encrypt(message));
     }
 
 }

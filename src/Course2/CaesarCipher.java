@@ -89,9 +89,9 @@ public class CaesarCipher {
         System.out.println(encrypted);
 
         //initial = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
-        initial = "Top ncmy qkff vi vguv vbg ycpx";
-        key1 = 26-2;
-        key2 = 26-20;
+        initial = "Hfs cpwewloj loks cd Hoto kyg Cyy.";
+        key1 = 26-14;
+        key2 = 26-24;
         encrypted = encryptTwoKeys(initial, key1, key2);
         System.out.println(encrypted);
 

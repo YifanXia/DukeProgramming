@@ -44,6 +44,8 @@ public class CaesarCipherTwoKeysOO {
     }
 
     public static void main(String[] args) {
-        CaesarCipherTwoKeysOO caesarCipherTwoKeysOO = new CaesarCipherTwoKeysOO(8, 3);
+        String message = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        CaesarCipherTwoKeysOO caesarCipher = new CaesarCipherTwoKeysOO(21, 8);
+        System.out.println(caesarCipher.encryptTwoKeys(message));
     }
 }

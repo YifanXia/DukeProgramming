@@ -14,18 +14,20 @@ public class WordLengths {
             if (!Character.isLetter(word.charAt(word.length()-1))) {
                 length --;
             }
-            if (length > largeLength) {
-                counts[largeLength] ++;
-            }
-            else {
-                counts[length] ++ ;
+            if (length > 0) {
+                if (length > largeLength) {
+                    counts[largeLength] ++;
+                }
+                else {
+                    counts[length] ++ ;
+                }
             }
         }
     }
 
     public void testCountWordLengths() {
         int[] lengthCounts = new int[31];
-        FileResource resource = new FileResource("resources/data/lotsOfWords.txt");
+        FileResource resource = new FileResource("resources/data/manywords.txt");
         countWordLengths(resource, lengthCounts);
         for (int k = 1; k < lengthCounts.length; k ++) {
             if (lengthCounts[k] > 0) {
