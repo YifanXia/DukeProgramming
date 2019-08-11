@@ -46,8 +46,8 @@ public class ExportDataParser {
     public void tester() {
         FileResource fr = new FileResource("resources/csv/exports/exportdata.csv");
         System.out.println(countryInfo(fr.getCSVParser(), "Nauru"));
-        listExportersTwoProducts(fr.getCSVParser(), "fish", "nuts");
-        System.out.println(numberOfExporters(fr.getCSVParser(), "sugar"));
+        listExportersTwoProducts(fr.getCSVParser(), "cotton", "flowers");
+        System.out.println(numberOfExporters(fr.getCSVParser(), "cocoa"));
         bigExporters(fr.getCSVParser(), "$999,999,999,999");
     }
 

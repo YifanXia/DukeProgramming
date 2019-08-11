@@ -2,3 +2,5 @@
 out/
 *.iml
 .DS_Store
+resources/csv/weather/
+resources/csv/baby_names/
