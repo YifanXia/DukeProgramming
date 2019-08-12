@@ -45,14 +45,16 @@ public class BabyBirthName {
     public int getRank(int year, String name, String gender) {
         String fileName = path + "yob" + year + "short.csv";
         FileResource fr = new FileResource(fileName);
-        int rank;
-        CSVRecord record = null;
+        int rank = 0;
         for (CSVRecord currentRec: fr.getCSVParser(false)) {
-            if (currentRec.get(0).toLowerCase().equals(name.toLowerCase())) {
-                record = currentRec;
-                break;
+            if (currentRec.get(1).equalsIgnoreCase(gender)) {
+                rank ++;
+                if (currentRec.get(0).equalsIgnoreCase(name)) {
+                    return rank;
+                }
             }
         }
+        return -1;
 
     }
 
