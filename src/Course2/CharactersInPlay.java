@@ -48,12 +48,12 @@ public class CharactersInPlay {
     }
 
     public void tester() {
-        FileResource fr = new FileResource("resources/data/macbethSmall.txt");
+        FileResource fr = new FileResource("resources/data/likeit.txt");
         findAllCharacters(fr);
         for (int i = 0; i < characters.size(); i ++) {
             System.out.println(characters.get(i) + " " + characterCounts.get(i));
         }
-        charactersWithNumParts(1, 3);
+        charactersWithNumParts(10, 15);
     }
 
     public static void main(String[] args) {
