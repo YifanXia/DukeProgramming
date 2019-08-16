@@ -1,6 +1,8 @@
 package Course2;
 
 import edu.duke.*;
+
+import java.io.*;
 import java.util.*;
 
 public class GladLibMaps {
@@ -8,14 +10,29 @@ public class GladLibMaps {
     private ArrayList<String> usedWords;
     private HashMap<String, ArrayList<String>> wordMap;
     private Random myRandom;
+    private Properties properties;
+    private FileInputStream in;
 
     private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
     private static String dataSourceDirectory = "resources/data";
 
     public GladLibMaps(){
         wordMap = new HashMap<String, ArrayList<String>>();
-        initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
+        properties = new Properties();
+
+        try {
+            in = new FileInputStream("resources/word_lists.properties");
+        } catch (FileNotFoundException e) {
+            System.out.println("Properties file not found.");
+        }
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            System.out.println("Something is wrong.");
+        }
+        initializeFromSource(dataSourceDirectory);
+
     }
 
     public GladLibMaps(String source){
@@ -25,9 +42,11 @@ public class GladLibMaps {
     }
 
     private void initializeFromSource(String source) {
-        String[] labels = {"adjective", "noun", "color", "country", "name", "animal", "timeframe", "verb", "fruit"};
-        for (String label: labels) {
-            String fileName = label + ".txt";
+        //String[] labels = {"adjective", "noun", "color", "country", "name", "animal", "timeframe", "verb", "fruit"};
+
+        for (String label: properties.stringPropertyNames()) {
+            String fileName = properties.getProperty(label);
+            //String fileName = label + ".txt";
             ArrayList<String> wordList = readIt(source + "/" + fileName);
             wordMap.put(label, wordList);
         }
