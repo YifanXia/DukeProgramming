@@ -64,13 +64,13 @@ public class CodonCounter {
     }
 
     public void tester() {
-        FileResource fr = new FileResource("resources/dna/dnaMystery1.txt");
+        FileResource fr = new FileResource("resources/dna/dnaMystery2.txt");
         String dna = fr.asString();
 
         System.out.println("Frame 0");
         buildCodonMap(0, dna);
         System.out.println("Most common codon: " + getMostCommonCodon() + "\t" + codonCounts.get(getMostCommonCodon()));
-        //printCodonCounts(1, 5);
+        printCodonCounts(7, 8);
         System.out.println(codonCounts.size());
 
         System.out.println("Frame 1");

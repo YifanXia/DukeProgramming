@@ -12,12 +12,14 @@ public class GladLibMaps {
     private Random myRandom;
     private Properties properties;
     private FileInputStream in;
+    private HashSet<String> usedLabels;
 
     private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
     private static String dataSourceDirectory = "resources/data";
 
     public GladLibMaps(){
         wordMap = new HashMap<String, ArrayList<String>>();
+        usedLabels = new HashSet<>();
         myRandom = new Random();
         properties = new Properties();
 
@@ -59,6 +61,9 @@ public class GladLibMaps {
     }
 
     private String getSubstitute(String label) {
+        if (!label.equals("number")) {
+            usedLabels.add(label);
+        }
         if (label.equals("number")){
             return ""+myRandom.nextInt(50)+5;
         }
@@ -145,9 +150,29 @@ public class GladLibMaps {
         System.out.println(usedWords.size());
     }
 
+    public int totalWordsInMap() {
+        int totalWords = 0;
+        for (String label: wordMap.keySet()) {
+            totalWords += wordMap.get(label).size();
+        }
+        return totalWords;
+    }
+
+    public int totalWordsConsidered() {
+        int totalWords = 0;
+        Iterator<String> it = usedLabels.iterator();
+        while (it.hasNext()) {
+            String label = it.next();
+            totalWords += wordMap.get(label).size();
+        }
+        return totalWords;
+    }
+
     public static void main(String[] args) {
         GladLibMaps gladLibMaps = new GladLibMaps();
         gladLibMaps.makeStory();
+        System.out.println(gladLibMaps.totalWordsInMap());
+        System.out.println(gladLibMaps.totalWordsConsidered());
     }
 
 

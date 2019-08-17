@@ -152,22 +152,24 @@ public class WordsInFile {
         }
     }
 
+
+
     public void tester() {
         buildWordFileMap();
         System.out.println("maximum number: " + maximumNumber());
         ArrayList<String> wordsInFourFiles = wordsInNumFiles(4);
-        ArrayList<String> wordsInFiveFiles = wordsInNumFiles(5);
+        ArrayList<String> wordsInFiveFiles = wordsInNumFiles(7);
         System.out.println("Words appearing in 4 files: " + wordsInFourFiles.size());
 //        for (String word: wordsInFourFiles) {
 //            System.out.println(word);
 //        }
-        System.out.println("Words appearing in 5 files: " + wordsInFiveFiles.size());
+        System.out.println("Words appearing in 7 files: " + wordsInFiveFiles.size());
 //        for (String word: wordsInFiveFiles) {
 //            System.out.println(word);
 //        }
-        printFilesIn("sad");
+        printFilesIn("laid");
         System.out.println("");
-        printFilesIn("red");
+        printFilesIn("tree");
     }
 
     public static void main(String[] args) {

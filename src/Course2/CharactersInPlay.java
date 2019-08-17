@@ -48,7 +48,7 @@ public class CharactersInPlay {
     }
 
     public void tester() {
-        FileResource fr = new FileResource("resources/data/likeit.txt");
+        FileResource fr = new FileResource("resources/data/errors.txt");
         findAllCharacters(fr);
         for (int i = 0; i < characters.size(); i ++) {
             System.out.println(characters.get(i) + " " + characterCounts.get(i));
