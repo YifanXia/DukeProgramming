@@ -102,4 +102,43 @@ public class LogAnalyzer {
         return uniqueIPs;
     }
 
+    public HashMap<String, ArrayList<String>> iPsForDays() {
+        HashMap<String, ArrayList<String>> dayIPMap = new HashMap<>();
+        for (LogEntry le: records) {
+            String day = le.getAccessTime().toString().substring(4, 10);
+            ArrayList<String> dailyIPs = new ArrayList<>();
+            if (dayIPMap.containsKey(day)) {
+                dailyIPs = dayIPMap.get(day);
+            }
+            dailyIPs.add(le.getIpAddress());
+            dayIPMap.put(day, dailyIPs);
+        }
+        return dayIPMap;
+    }
+
+    public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> dayIPMap) {
+        int maxNumberIPs = 0;
+        String maxDay = "";
+        for (String day: dayIPMap.keySet()) {
+            if (maxNumberIPs < dayIPMap.get(day).size()) {
+                maxNumberIPs = dayIPMap.get(day).size();
+                maxDay = day;
+            }
+        }
+        return maxDay;
+    }
+
+    public HashSet<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> dayIPMap, String day) {
+        ArrayList<String> dailyIPs = dayIPMap.get(day);
+        HashMap<String, Integer> countIPs = new HashMap<>();
+        for (String ip: dailyIPs) {
+            if (countIPs.containsKey(ip)) {
+                countIPs.put(ip, countIPs.get(ip) + 1);
+            }
+            else {
+                countIPs.put(ip, 1);
+            }
+        }
+        return iPsMostVisits(countIPs);
+    }
 }
