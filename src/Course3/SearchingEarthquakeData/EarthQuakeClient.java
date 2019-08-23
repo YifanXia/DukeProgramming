@@ -94,25 +94,66 @@ public class EarthQuakeClient {
 
     public void quakeOfDepth() {
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "resources/earthquakeData/nov20quakedatasmall.atom";
+        String source = "resources/earthquakeData/nov20quakedata.atom";
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("# quakes read: " + list.size());
         double minDepth = -10000.0;
-        double maxDepth = -5000.0;
+        double maxDepth = -8000.0;
         ArrayList<QuakeEntry> filtered = filterByDepth(list, minDepth, maxDepth);
         System.out.println("Earthquakes between the depth of " + minDepth + " and " + maxDepth + ":");
         for (int k = 0; k < filtered.size(); k ++) {
             QuakeEntry qe = filtered.get(k);
             System.out.println(qe);
         }
+        System.out.println("Found " + filtered.size() + " such quakes.");
+    }
+
+    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
+        ArrayList<QuakeEntry> filtered = new ArrayList<>();
+        for (QuakeEntry qe: quakeData) {
+            switch (where) {
+                case "start":
+                    if (qe.getInfo().startsWith(phrase)) {
+                        filtered.add(qe);
+                    }
+                    break;
+                case "end":
+                    if (qe.getInfo().endsWith(phrase)) {
+                        filtered.add(qe);
+                    }
+                    break;
+                case "any":
+                    if (qe.getInfo().indexOf(phrase) != -1) {
+                        filtered.add(qe);
+                    }
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + where);
+            }
+        }
+        return filtered;
+    }
+
+    public void quakesByPhrase() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "resources/earthquakeData/nov20quakedata.atom";
+        //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
+        ArrayList<QuakeEntry> list = parser.read(source);
+        System.out.println("# quakes read: " + list.size());
+        ArrayList<QuakeEntry> filtered = filterByPhrase(list, "any", "Creek");
+        for (QuakeEntry qe: filtered) {
+            System.out.println(qe);
+        }
+        System.out.println("Found " + filtered.size() + " entries.");
     }
 
     public static void main(String[] args) {
         EarthQuakeClient eqc = new EarthQuakeClient();
-        eqc.createCSV();
-        eqc.bigQuakes();
-        eqc.closeToMe();
+        //eqc.createCSV();
+        //eqc.bigQuakes();
+        //eqc.closeToMe();
         eqc.quakeOfDepth();
+        eqc.quakesByPhrase();
     }
 }
