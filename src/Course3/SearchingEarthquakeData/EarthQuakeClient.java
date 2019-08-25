@@ -98,8 +98,8 @@ public class EarthQuakeClient {
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("# quakes read: " + list.size());
-        double minDepth = -10000.0;
-        double maxDepth = -8000.0;
+        double minDepth = -4000.0;
+        double maxDepth = -2000.0;
         ArrayList<QuakeEntry> filtered = filterByDepth(list, minDepth, maxDepth);
         System.out.println("Earthquakes between the depth of " + minDepth + " and " + maxDepth + ":");
         for (int k = 0; k < filtered.size(); k ++) {
@@ -141,7 +141,7 @@ public class EarthQuakeClient {
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("# quakes read: " + list.size());
-        ArrayList<QuakeEntry> filtered = filterByPhrase(list, "any", "Creek");
+        ArrayList<QuakeEntry> filtered = filterByPhrase(list, "any", "Can");
         for (QuakeEntry qe: filtered) {
             System.out.println(qe);
         }
