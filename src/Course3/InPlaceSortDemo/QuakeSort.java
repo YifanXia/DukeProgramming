@@ -26,7 +26,7 @@ public class QuakeSort {
         }
     }
     /* tester method to use in BlueJ */
-    public void testSort(){
+    public void testSort() {
         EarthQuakeParser parser = new EarthQuakeParser();
         String source = "data/nov20quakedata.atom";
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
