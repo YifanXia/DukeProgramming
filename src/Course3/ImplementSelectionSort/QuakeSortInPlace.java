@@ -6,6 +6,7 @@ package Course3.ImplementSelectionSort;
  * @version (a version number or a date)
  */
 
+import java.lang.reflect.Array;
 import java.util.*;
 import edu.duke.*;
 
@@ -48,7 +49,7 @@ public class QuakeSortInPlace {
 
     public void sortByLargestDepth(ArrayList<QuakeEntry> in) {
 
-        for (int i = 0; i < in.size(); i ++) {
+        for (int i = 0; i < 50; i ++) {
             int maxIdx = getLargestDepth(in, i);
             QuakeEntry qi = in.get(i);
             QuakeEntry qmax = in.get(maxIdx);
@@ -57,16 +58,71 @@ public class QuakeSortInPlace {
         }
     }
 
+    public void onePassBubbleSort(ArrayList<QuakeEntry> quakeData, int numSorted) {
+        int minIdx = 0;
+        for (int i = 0; i < quakeData.size() - numSorted - 1 ; i ++) {
+            if (quakeData.get(i).getMagnitude() > quakeData.get(i+1).getMagnitude()) {
+                QuakeEntry qeLeft= quakeData.get(i);
+                QuakeEntry qeRight = quakeData.get(i+1);
+                quakeData.set(i, qeRight);
+                quakeData.set(i+1, qeLeft);
+            }
+        }
+    }
+
+    public void sortByMagnitudeWithBubbleSort(ArrayList<QuakeEntry> in) {
+        for (int i = 0; i < in.size(); i ++) {
+            onePassBubbleSort(in, i);
+        }
+    }
+
+    public boolean checkInSortedOrder(ArrayList<QuakeEntry> quakeData) {
+        for (int i = 0; i < quakeData.size() - 1; i ++) {
+            if (quakeData.get(i).getMagnitude() > quakeData.get(i+1).getMagnitude()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void sortByMagnitudeWithBubbleSortWithCheck(ArrayList<QuakeEntry> in) {
+        for (int i = 0; i < in.size(); i ++) {
+            onePassBubbleSort(in, i);
+            if (checkInSortedOrder(in)) {
+                System.out.println("Sorted after " + (i + 1) + " passes.");
+                return;
+            }
+        }
+    }
+
+    public void sortByMagnitudeWithCheck(ArrayList<QuakeEntry> in) {
+        for (int i = 0; i < in.size(); i ++) {
+            int minIdx = getSmallestMagnitude(in, i);
+            QuakeEntry qi = in.get(i);
+            QuakeEntry qmin = in.get(minIdx);
+            in.set(i, qmin);
+            in.set(minIdx, qi);
+            if (checkInSortedOrder(in)) {
+                System.out.println("Sorted after " + (i + 1) + " passes.");
+                return;
+            }
+        }
+    }
+
     public void testSort() {
         EarthQuakeParser parser = new EarthQuakeParser(); 
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        String source = "resources/earthquakeData/nov20quakedatasmall.atom";
+        String source = "resources/earthquakeData/earthQuakeDataWeekDec6sample2.atom";
         //String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
-        sortByMagnitude(list);
-        for (QuakeEntry qe: list) { 
+        //sortByMagnitude(list);
+        //sortByLargestDepth(list);
+        //sortByMagnitudeWithBubbleSort(list);
+        sortByMagnitudeWithBubbleSortWithCheck(list);
+        //sortByMagnitudeWithCheck(list);
+        for (QuakeEntry qe: list) {
             System.out.println(qe);
         } 
         
@@ -95,6 +151,7 @@ public class QuakeSortInPlace {
 	}
 
 	public static void main(String[] args) {
-
+        QuakeSortInPlace qsip = new QuakeSortInPlace();
+        qsip.testSort();
     }
 }
