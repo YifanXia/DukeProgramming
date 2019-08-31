@@ -33,7 +33,6 @@ public class MarkovOne {
         sb.append(key);
         for(int k=0; k < numChars - 1; k++){
             ArrayList<String> follows = getFollows(key);
-            //System.out.println(follows);
             if (follows.size() == 0) {
                 break;
             }
@@ -57,7 +56,6 @@ public class MarkovOne {
             while (true) {
                 keyIndex = myText.indexOf(key, pos);
                 if (keyIndex + key.length() < myText.length() && keyIndex != -1) {
-                    //System.out.println(keyIndex + " " + myText.length());
                     String follow = Character.toString(myText.charAt(keyIndex + key.length()));
                     follows.add(follow);
                     pos = keyIndex + 1;

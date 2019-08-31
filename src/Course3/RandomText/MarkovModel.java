@@ -55,7 +55,6 @@ public class MarkovModel {
             while (true) {
                 keyIndex = myText.indexOf(key, pos);
                 if (keyIndex + key.length() < myText.length() && keyIndex != -1) {
-                    //System.out.println(keyIndex + " " + myText.length());
                     String follow = Character.toString(myText.charAt(keyIndex + key.length()));
                     follows.add(follow);
                     pos = keyIndex + 1;
