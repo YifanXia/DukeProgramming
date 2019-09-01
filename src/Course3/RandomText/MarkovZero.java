@@ -33,7 +33,7 @@ public class MarkovZero {
 			int index = myRandom.nextInt(myText.length());
 			sb.append(myText.charAt(index));
 		}
-		
+
 		return sb.toString();
 	}
 }
