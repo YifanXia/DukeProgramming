@@ -1,4 +1,4 @@
-package Course3.WordNGramStarterProgram;
+package Course3.WordGramClassStarterProgram;
 /**
  * Write a description of class MarkovRunner here.
  * 
@@ -29,12 +29,11 @@ public class MarkovRunner {
     } 
 
     public void runMarkov() { 
-        FileResource fr = new FileResource("resources/random_text/confucius.txt");
+        FileResource fr = new FileResource(); 
         String st = fr.asString(); 
         st = st.replace('\n', ' '); 
-        //MarkovWordOne markovWord = new MarkovWordOne();
-        MarkovWordTwo markovWord = new MarkovWordTwo();
-        runModel(markovWord, st, 120, 832);
+        //MarkovWordOne markovWord = new MarkovWordOne(); 
+        //runModel(markovWord, st, 200); 
     } 
 
     private void printOut(String s){
@@ -50,11 +49,6 @@ public class MarkovRunner {
             } 
         } 
         System.out.println("\n----------------------------------");
-    }
-
-    public static void main(String[] args) {
-        MarkovRunner mr = new MarkovRunner();
-        mr.runMarkov();
-    }
+    } 
 
 }

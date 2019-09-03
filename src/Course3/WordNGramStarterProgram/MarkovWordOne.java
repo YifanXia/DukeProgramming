@@ -26,7 +26,7 @@ public class MarkovWordOne implements IMarkovModel {
 		myText = text.split("\\s+");
 	}
 
-	public int indexOf(String[] text, String word, int start) {
+	private int indexOf(String[] text, String word, int start) {
     	for (int i = start; i < text.length; i ++) {
     		if (text[i].equals(word)) {
     			return i;

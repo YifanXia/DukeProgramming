@@ -21,7 +21,7 @@ public class MarkovWordTwo implements IMarkovModel {
         myText = text.split("\\s+");
     }
 
-    public int indexOf(String[] text, String[] words, int start) {
+    private int indexOf(String[] text, String[] words, int start) {
         for (int i = start; i < text.length - words.length; i ++) {
             if (text[i].equals(words[0]) && text[i + 1].equals(words[1])) {
                 return i;
@@ -32,7 +32,7 @@ public class MarkovWordTwo implements IMarkovModel {
 
     public String getRandomText(int numWords){
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length-1);  // random word to start with
+        int index = myRandom.nextInt(myText.length-2);  // random word to start with
         String[] key = Arrays.copyOfRange(myText, index, index + 2);
         sb.append(String.join(" ", key));
         sb.append(" ");
@@ -48,7 +48,6 @@ public class MarkovWordTwo implements IMarkovModel {
             sb.append(" ");
             key = new String[] {key[key.length - 1], next};
         }
-        System.out.println(myMap.keySet().size());
         return sb.toString().trim();
     }
 
@@ -68,5 +67,10 @@ public class MarkovWordTwo implements IMarkovModel {
             myMap.put(key, follows);
             return follows;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Markov Word Two";
     }
 }
