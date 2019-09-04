@@ -7,6 +7,15 @@ public class WordGram {
     public WordGram(String[] source, int start, int size) {
         myWords = new String[size];
         System.arraycopy(source, start, myWords, 0, size);
+        myHash = hashCode();
+    }
+
+    public int hashCode() {
+        int hash = 0;
+        for (int i = 0; i < myWords.length; i ++) {
+            hash += myWords[i].hashCode() * (-1) ^ i;
+        }
+        return hash;
     }
 
     public String wordAt(int index) {
@@ -17,20 +26,30 @@ public class WordGram {
     }
 
     public int length(){
-        // TODO: Complete this method
-        return 0;
+        return myWords.length;
     }
 
     public String toString(){
         String ret = "";
-        // TODO: Complete this method
-
+        for (String word: myWords) {
+            ret += word;
+            ret += " ";
+        }
         return ret.trim();
     }
 
     public boolean equals(Object o) {
         WordGram other = (WordGram) o;
-        // TODO: Complete this method
+        if (myWords.length != other.length()) {
+            return false;
+        }
+        else {
+            for (int i = 0; i < myWords.length; i ++) {
+                if (!myWords[i].equals(other.wordAt(i))) {
+                    return false;
+                }
+            }
+        }
         return true;
 
     }
