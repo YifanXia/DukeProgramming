@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class MarkovWord implements IMarkovModel {
+public class EfficientMarkovWord implements IMarkovModel {
     private String[] myText;
     private int myOrder;
     private Random myRandom;
     private HashMap<Integer, ArrayList<String>> myMap;
 
-    public MarkovWord(int order) {
+    public EfficientMarkovWord(int order) {
         myOrder = order;
         myRandom = new Random();
         myMap = new HashMap<>();
     }
 
-    public MarkovWord(int order, int seed) {
+    public EfficientMarkovWord(int order, int seed) {
         myOrder = order;
         myRandom = new Random(seed);
         myMap = new HashMap<>();
@@ -25,11 +25,37 @@ public class MarkovWord implements IMarkovModel {
     @Override
     public void setTraining(String text) {
         myText = text.split("\\s+");
+        buildMap();
     }
 
     @Override
     public void setRandom(int seed) {
         myRandom = new Random(seed);
+    }
+
+    public void printHashMapInfo() {
+        /*
+        Print the HashMap (all the keys and their corresponding values). Only do this if the HashMap is small.
+        Print the number of keys in the HashMap
+        Print the size of the largest value in the HashMap—that is, the size of the largest ArrayList of characters
+        Print the keys that have the maximum size value.
+         */
+        //System.out.println(myMap);
+        System.out.println("Number of keys: " + myMap.keySet().size());
+        int maxListLength = 0;
+        for (int key: myMap.keySet()) {
+            if (maxListLength < myMap.get(key).size()) {
+                maxListLength = myMap.get(key).size();
+            }
+        }
+        ArrayList<Integer> maxKeys = new ArrayList<>();
+        for (int key: myMap.keySet()) {
+            if (myMap.get(key).size() == maxListLength) {
+                maxKeys.add(key);
+            }
+        }
+        System.out.println("Max length is: " + maxListLength);
+        System.out.println("Max key is: " + maxKeys);
     }
 
     private int indexOf(String[] text, WordGram wordGram, int start) {
@@ -48,22 +74,26 @@ public class MarkovWord implements IMarkovModel {
         return -1;
     }
 
-    private ArrayList<String> getFollows(WordGram key) {
-        if (myMap.containsKey(key.hashCode())) {
-            return myMap.get(key.hashCode());
-        }
-        else {
-            ArrayList<String> follows = new ArrayList<String>();
+    private void buildMap() {
+        for (int i = 0; i <= myText.length - myOrder; i ++) {
+            System.out.println(i / (myText.length * 1.0));
+            ArrayList<String> follows = new ArrayList<>();
+            WordGram key = new WordGram(myText, i, myOrder);
+            //System.out.println(key);
             int pos = 0;
             int keyIdx = indexOf(myText, key, pos);
             while (keyIdx + key.length() < myText.length && keyIdx != -1) {
                 follows.add(myText[keyIdx + key.length()]);
                 pos = keyIdx + 1;
                 keyIdx = indexOf(myText, key, pos);
+                //System.out.println(keyIdx);
             }
             myMap.put(key.hashCode(), follows);
-            return follows;
         }
+    }
+
+    private ArrayList<String> getFollows(WordGram key) {
+        return myMap.getOrDefault(key.hashCode(), null);
     }
 
     @Override

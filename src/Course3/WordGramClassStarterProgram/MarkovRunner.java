@@ -29,11 +29,11 @@ public class MarkovRunner {
     } 
 
     public void runMarkov() { 
-        FileResource fr = new FileResource(); 
+        FileResource fr = new FileResource("resources/random_text/confucius.txt");
         String st = fr.asString(); 
         st = st.replace('\n', ' '); 
-        //MarkovWordOne markovWord = new MarkovWordOne(); 
-        //runModel(markovWord, st, 200); 
+        MarkovWord markovWord = new MarkovWord(5, 844);
+        runModel(markovWord, st, 200);
     } 
 
     private void printOut(String s){
@@ -49,6 +49,23 @@ public class MarkovRunner {
             } 
         } 
         System.out.println("\n----------------------------------");
-    } 
+    }
+
+    public void testHashMapBuilder() {
+        // String st = "this is a test yes this is really a test";
+        FileResource fr = new FileResource("resources/random_text/confucius.txt");
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        EfficientMarkovWord mm = new EfficientMarkovWord(2);
+        mm.setTraining(st.trim());
+        mm.setRandom(65);
+        mm.printHashMapInfo();
+    }
+
+    public static void main(String[] args) {
+        MarkovRunner mr = new MarkovRunner();
+        //mr.runMarkov();
+        mr.testHashMapBuilder();
+    }
 
 }

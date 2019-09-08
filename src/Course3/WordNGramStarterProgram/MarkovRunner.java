@@ -6,6 +6,8 @@ package Course3.WordNGramStarterProgram;
  * @version (a version number or a date)
  */
 
+import Course3.WordGramClassStarterProgram.EfficientMarkovWord;
+import Course3.WordGramClassStarterProgram.MarkovWord;
 import edu.duke.*;
 
 public class MarkovRunner {
@@ -52,9 +54,21 @@ public class MarkovRunner {
         System.out.println("\n----------------------------------");
     }
 
+    public void testHashMapBuilder() {
+        String st = "this is a test yes this is really a test";
+        FileResource fr = new FileResource("resources/random_text/confucius.txt");
+        //String st = fr.asString();
+        //st = st.replace('\n', ' ');
+        EfficientMarkovWord mm = new EfficientMarkovWord(2);
+        mm.setTraining(st.trim());
+        mm.setRandom(42);
+        mm.printHashMapInfo();
+    }
+
     public static void main(String[] args) {
         MarkovRunner mr = new MarkovRunner();
         mr.runMarkov();
+        //mr.testHashMapBuilder();
     }
 
 }

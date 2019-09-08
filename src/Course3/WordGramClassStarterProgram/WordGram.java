@@ -1,5 +1,7 @@
 package Course3.WordGramClassStarterProgram;
 
+import java.util.Arrays;
+
 public class WordGram {
     private String[] myWords;
     private int myHash;
@@ -11,11 +13,7 @@ public class WordGram {
     }
 
     public int hashCode() {
-        int hash = 0;
-        for (int i = 0; i < myWords.length; i ++) {
-            hash += myWords[i].hashCode() * (-1) ^ i;
-        }
-        return hash;
+        return toString().hashCode();
     }
 
     public String wordAt(int index) {

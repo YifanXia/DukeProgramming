@@ -32,7 +32,7 @@ public class WordGramTester {
 		}
 	}
 
-	public void testWordGramShfitAdd() {
+	public void testWordGramShiftAdd() {
 		String source = "this is a test this is a test this is a test of words";
 		String[] words = source.split("\\s+");
 		int size = 4;
@@ -51,7 +51,7 @@ public class WordGramTester {
 		System.out.println("Testing WordGram Equals");
 		wgt.testWordGramEquals();
 		System.out.println("Testing WordGram shiftAdd");
-		wgt.testWordGramShfitAdd();
+		wgt.testWordGramShiftAdd();
 	}
 	
 }
